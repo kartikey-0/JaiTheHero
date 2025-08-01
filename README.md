@@ -1,3 +1,3 @@
-# KarioForever
+# Apoloyze Hero
 Pure Vanilla Javascript Game 
 #Coming Soon........
