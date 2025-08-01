@@ -1,3 +1,3 @@
-# Apoloyze Hero
+# JaiTheHero
 Pure Vanilla Javascript Game 
 #Coming Soon........
