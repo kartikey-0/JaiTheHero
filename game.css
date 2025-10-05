@@ -1,26 +1,63 @@
+
+
+/* Reset & base styles */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow: hidden; /* Prevent scrollbars */
+  position: relative;
+  background-color: #87ceeb; /* fallback sky blue */
 }
 
-body {
+#heart-container {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+.heart {
+  width: 32px;
+  height: 32px;
+  background-image: url('assets/heart.png');
   background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-image: url('assets/forest.webp');
-  overflow: hidden;
+}
+/* Blinking effect when hit */
+.hero-blink {
+  animation: blink-hero 0.15s steps(2) 6;
+}
+@keyframes blink-hero {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
 }
 
+
+/* Background container for side-scrolling background */
+#game-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('assets/game-platform-seamless-2d-background-design-vector.jpg');
+  background-repeat: repeat-x; /* Infinite horizontal repeat */
+  background-position: 0 bottom;
+  background-size: cover;
+  will-change: background-position;
+  z-index: 0;
+}
+
+/* Hero style */
 #hero {
   position: absolute;
   width: 280px;
   height: 200px;
   left: 150px;
-  bottom: 0;
+  bottom: 50px; /* Ground level */
   transition: left 0.1s, bottom 0.05s;
-  z-index: 2;
+  z-index: 10;
 }
 
 .hero-img {
@@ -29,8 +66,33 @@ body {
   display: block;
   transition: transform 0.0005s;
 }
+
 .hero-img.blur {
   filter: blur(2px);
   transition: filter 0.2s;
 }
+/* ENEMY STYLES (update URL with your actual sprite image paths!) */
+.enemy {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  z-index: 4;
+  transition: transform 0.2s, opacity 0.2s;
+}
 
+.enemy.goomba {
+  background-image: url('assets/goomba.png'); /* or your sprite sheet with background-position */
+  /* background-size: cover; */
+}
+
+.enemy.koopa {
+  background-image: url('assets/koopa.png');
+  /* background-size: cover; */
+}
+
+.enemy.squished {
+  transform: scaleY(0.3);
+  opacity: 0.5;
+}
+
+/* Add more enemy types/styles as needed */
